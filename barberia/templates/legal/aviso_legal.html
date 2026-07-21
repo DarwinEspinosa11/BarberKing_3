@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Aviso Legal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <a href="/" class="header__logo">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+      <span>BARBERKING</span>
+    </a>
+    <nav class="header__nav">
+      <a href="/">Inicio</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/#agendar">Agendar</a>
+      <div id="sesionNav"></div>
+    </nav>
+  </header>
+
+  <section class="hero hero--small" aria-labelledby="legal-heading">
+    <div class="hero__big-text" role="heading" aria-level="1" id="legal-heading">
+      <span class="hero__word">AVISO LEGAL</span>
+    </div>
+  </section>
+
+  <main class="legal-page">
+    <div class="legal-content">
+
+      <p class="legal-fecha">Última actualización: enero de 2026</p>
+
+      <h2>1. Identificación del titular</h2>
+      <p>En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE), se informa:</p>
+      <ul>
+        <li><strong>Denominación:</strong> BarberKing</li>
+        <li><strong>Domicilio:</strong> Av. Ourense, Orense</li>
+        <li><strong>Email:</strong> <a href="mailto:contacto@barberking.com">contacto@barberking.com</a></li>
+        <li><strong>Teléfono:</strong> (+34) 123-456789</li>
+      </ul>
+
+      <h2>2. Objeto y ámbito de aplicación</h2>
+      <p>El presente aviso legal regula el uso del sitio web barberking.com y la plataforma de reservas online asociada.</p>
+
+      <h2>3. Propiedad intelectual</h2>
+      <p>Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseño) son propiedad de BarberKing o de sus licenciantes. Queda prohibida su reproducción total o parcial sin autorización expresa.</p>
+
+      <h2>4. Condiciones de uso</h2>
+      <p>El acceso y uso de este sitio web implica la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso lícito de los servicios, absteniéndose de realizar actividades que dañen los derechos de terceros o dificulten el funcionamiento del sitio.</p>
+
+      <h2>5. Responsabilidad</h2>
+      <p>BarberKing no se responsabiliza de los daños derivados del uso indebido del sitio web, ni de posibles fallos técnicos ajenos a su voluntad. La disponibilidad del servicio puede verse interrumpida por tareas de mantenimiento.</p>
+
+      <h2>6. Legislación aplicable</h2>
+      <p>Este aviso legal se rige por la legislación española. Para la resolución de disputas, las partes se someten a los juzgados y tribunales de Ourense.</p>
+
+    </div>
+  </main>
+
+  <footer class="footer footer--simple" role="contentinfo">
+    <span>© 2026 BarberKing</span>
+    <span class="footer__legal-links">
+      <a href="/politica-de-privacidad">Privacidad</a>
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-de-cookies">Cookies</a>
+    </span>
+  </footer>
+
+  <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>

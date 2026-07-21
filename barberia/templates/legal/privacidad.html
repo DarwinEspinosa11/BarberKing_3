@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Política de Privacidad</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <a href="/" class="header__logo">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+      <span>BARBERKING</span>
+    </a>
+    <nav class="header__nav" aria-label="Navegación principal">
+      <a href="/">Inicio</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/#agendar">Agendar</a>
+      <div id="sesionNav"></div>
+    </nav>
+  </header>
+
+  <section class="hero hero--small" aria-labelledby="legal-heading">
+    <div class="hero__big-text" role="heading" aria-level="1" id="legal-heading">
+      <span class="hero__word">PRIVACIDAD</span>
+    </div>
+  </section>
+
+  <main class="legal-page">
+    <div class="legal-content">
+
+      <p class="legal-fecha">Última actualización: enero de 2026</p>
+
+      <h2>1. Responsable del tratamiento</h2>
+      <p>BarberKing, con domicilio en Av. Ourense, Orense. Contacto: <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>.</p>
+
+      <h2>2. Datos que recopilamos</h2>
+      <p>Recopilamos los siguientes datos personales cuando te registras o usas nuestros servicios:</p>
+      <ul>
+        <li>Nombre y apellidos</li>
+        <li>Dirección de correo electrónico</li>
+        <li>Número de teléfono</li>
+        <li>Historial de citas</li>
+      </ul>
+
+      <h2>3. Finalidad del tratamiento</h2>
+      <p>Los datos se utilizan exclusivamente para:</p>
+      <ul>
+        <li>Gestionar tu cuenta y las citas reservadas</li>
+        <li>Enviarte confirmaciones y recordatorios</li>
+        <li>Mejorar la calidad del servicio</li>
+      </ul>
+
+      <h2>4. Base jurídica</h2>
+      <p>El tratamiento se basa en la ejecución del contrato de prestación de servicios y en tu consentimiento expreso al registrarte.</p>
+
+      <h2>5. Conservación de los datos</h2>
+      <p>Tus datos se conservarán mientras mantengas una cuenta activa o durante el tiempo necesario para cumplir obligaciones legales.</p>
+
+      <h2>6. Tus derechos (RGPD)</h2>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, portabilidad, limitación y oposición enviando un correo a <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>. También tienes derecho a presentar una reclamación ante la AEPD (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+
+      <h2>7. Seguridad</h2>
+      <p>Adoptamos medidas técnicas y organizativas para proteger tus datos frente a accesos no autorizados, pérdida o alteración.</p>
+
+      <h2>8. Cookies</h2>
+      <p>Utilizamos cookies propias de sesión. Consulta nuestra <a href="/politica-de-cookies">Política de Cookies</a> para más información.</p>
+
+    </div>
+  </main>
+
+  <footer class="footer footer--simple" role="contentinfo">
+    <span>© 2026 BarberKing</span>
+    <span class="footer__legal-links">
+      <a href="/politica-de-privacidad">Privacidad</a>
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-de-cookies">Cookies</a>
+    </span>
+  </footer>
+
+  <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>

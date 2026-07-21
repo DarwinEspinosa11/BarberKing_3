@@ -1,0 +1,47 @@
+# ── Credenciales y configuración sensible ──
+barberia/.env
+.env
+*.env
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.so
+
+# ── Entorno virtual ──
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# ── Logs ──
+*.log
+security.log
+
+# ── IDEs ──
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# ── Sistema operativo ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Base de datos (no subir dumps locales) ──
+*.sql.bak
+
+# ── Uploads / archivos subidos por usuarios ──
+barberia/static/uploads/

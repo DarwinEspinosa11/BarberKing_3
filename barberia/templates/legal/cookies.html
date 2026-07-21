@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Política de Cookies</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <a href="/" class="header__logo">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+      <span>BARBERKING</span>
+    </a>
+    <nav class="header__nav">
+      <a href="/">Inicio</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/#agendar">Agendar</a>
+      <div id="sesionNav"></div>
+    </nav>
+  </header>
+
+  <section class="hero hero--small" aria-labelledby="legal-heading">
+    <div class="hero__big-text" role="heading" aria-level="1" id="legal-heading">
+      <span class="hero__word">COOKIES</span>
+    </div>
+  </section>
+
+  <main class="legal-page">
+    <div class="legal-content">
+
+      <p class="legal-fecha">Última actualización: enero de 2026</p>
+
+      <h2>1. ¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas una página web. Permiten que el sitio recuerde tus preferencias y mantenga tu sesión activa.</p>
+
+      <h2>2. Cookies que utilizamos</h2>
+      <table class="cookies-tabla" aria-label="Tipos de cookies utilizadas">
+        <thead>
+          <tr>
+            <th scope="col">Cookie</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Finalidad</th>
+            <th scope="col">Duración</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>session</code></td>
+            <td>Técnica / Sesión</td>
+            <td>Mantiene la sesión del usuario autenticado</td>
+            <td>Sesión del navegador</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Cookies de terceros</h2>
+      <p>Utilizamos un iframe de Google Maps para mostrar nuestra ubicación. Google puede establecer sus propias cookies. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a> para más información.</p>
+
+      <h2>4. Cómo gestionar las cookies</h2>
+      <p>Puedes configurar tu navegador para rechazar o eliminar cookies. Ten en cuenta que deshabilitar las cookies técnicas puede impedir el correcto funcionamiento de la plataforma de reservas.</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+      </ul>
+
+      <h2>5. Consentimiento</h2>
+      <p>Al continuar navegando por nuestro sitio web, aceptas el uso de las cookies técnicas de sesión descritas en esta política.</p>
+
+    </div>
+  </main>
+
+  <footer class="footer footer--simple" role="contentinfo">
+    <span>© 2026 BarberKing</span>
+    <span class="footer__legal-links">
+      <a href="/politica-de-privacidad">Privacidad</a>
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-de-cookies">Cookies</a>
+    </span>
+  </footer>
+
+  <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>

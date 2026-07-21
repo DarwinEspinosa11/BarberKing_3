@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Panel Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='themify-icons-font/themify-icons/themify-icons.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body class="admin-body">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__logo"> 
+      <a href="/" class="header__logoadmin">
+        <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+        </a> 
+    ADMIN</div>
+    <nav class="admin-sidebar__nav" aria-label="Menú de administración">
+      <button class="admin-nav-btn admin-nav-btn--active" data-seccion="resumen"><i class="ti-dashboard" aria-hidden="true"></i> Resumen</button>
+      <button class="admin-nav-btn" data-seccion="citas"><i class="ti-calendar" aria-hidden="true"></i> Citas</button>
+      <button class="admin-nav-btn" data-seccion="barberos"><i class="ti-user" aria-hidden="true"></i> Barberos</button>
+      <button class="admin-nav-btn" data-seccion="servicios"><i class="atk-icon ti-layout-grid2" aria-hidden="true"></i> Servicios</button>
+      <button class="admin-nav-btn" data-seccion="clientes"><i class="ti-id-badge" aria-hidden="true"></i> Clientes</button>
+      
+    </nav>
+    <div class="admin-sidebar__footer">
+      <a href="/" class="admin-sidebar__link"><i class="ti-arrow-left" aria-hidden="true"></i> Ver sitio</a>
+      <button class="admin-sidebar__logout" id="btnLogoutAdmin"><i class="ti-power-off" aria-hidden="true"></i> Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- ── RESUMEN ─────────────────────────────────────────── -->
+    <section class="admin-seccion" id="seccionResumen">
+      <h1 class="admin-titulo">Resumen</h1>
+
+      <div class="admin-cards" id="resumenCards">
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+        <div class="admin-card skeleton"></div>
+      </div>
+
+      <!-- Citas del día -->
+      <h2 class="admin-subtitulo" style="margin-top:2.5rem">Citas de hoy</h2>
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla" id="tablaCitasHoy">
+          <thead>
+            <tr><th>#</th><th>Hora</th><th>Cliente</th><th>Barbero</th><th>Servicio</th><th>Estado</th></tr>
+          </thead>
+          <tbody id="citasHoyBody">
+            <tr><td colspan="6" class="admin-tabla__cargando">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Top servicios -->
+      <h2 class="admin-subtitulo" style="margin-top:2.5rem">Servicios más solicitados</h2>
+      <div id="topServiciosChart" class="admin-chart"></div>
+    </section>
+
+    <!-- ── CITAS ──────────────────────────────────────────── -->
+    <section class="admin-seccion admin-seccion--oculta" id="seccionCitas">
+      <div class="admin-seccion__header">
+        <h1 class="admin-titulo">Citas</h1>
+        <button class="btn btn--dark" id="btnNuevaCita">+ Nueva Cita</button>
+      </div>
+
+      <!-- Filtros -->
+      <div class="admin-filtros" id="filtrosCitas">
+        <div class="admin-filtro-grupo">
+          <label for="filtroFechaDesde">Desde</label>
+          <input type="date" id="filtroFechaDesde" />
+        </div>
+        <div class="admin-filtro-grupo">
+          <label for="filtroFechaHasta">Hasta</label>
+          <input type="date" id="filtroFechaHasta" />
+        </div>
+        <div class="admin-filtro-grupo">
+          <label for="filtroBarbero">Barbero</label>
+          <select id="filtroBarbero"><option value="">Todos</option></select>
+        </div>
+        <div class="admin-filtro-grupo">
+          <label for="filtroServicio">Servicio</label>
+          <select id="filtroServicio"><option value="">Todos</option></select>
+        </div>
+        <div class="admin-filtro-grupo">
+          <label for="filtroEstado">Estado</label>
+          <select id="filtroEstado">
+            <option value="">Todos</option>
+            <option>Pendiente</option>
+            <option>Confirmada</option>
+            <option>Finalizada</option>
+            <option>Cancelada</option>
+          </select>
+        </div>
+        <button class="btn btn--dark" id="btnAplicarFiltros">Filtrar</button>
+        <button class="btn btn--outline" id="btnLimpiarFiltros">Limpiar</button>
+      </div>
+
+      <!-- Formulario nueva cita -->
+      <div class="admin-form-panel" id="formNuevaCitaPanel" style="display:none">
+        <h2 class="admin-form-titulo">Nueva Cita</h2>
+        <form id="formNuevaCita">
+          <div class="admin-form-grid">
+            <div class="form-group">
+              <label for="ncClienteId">ID Cliente *</label>
+              <input type="number" id="ncClienteId" placeholder="Ej: 5" required min="1" />
+              <span class="form-hint">Puedes buscar el ID en la sección Clientes</span>
+            </div>
+            <div class="form-group">
+              <label for="ncBarbero">Barbero *</label>
+              <select id="ncBarbero" required><option value="">— Selecciona —</option></select>
+            </div>
+            <div class="form-group">
+              <label for="ncServicio">Servicio *</label>
+              <select id="ncServicio" required><option value="">— Selecciona —</option></select>
+            </div>
+            <div class="form-group">
+              <label for="ncFechaHora">Fecha y Hora *</label>
+              <input type="datetime-local" id="ncFechaHora" required />
+            </div>
+            <div class="form-group admin-form-grid--full">
+              <label for="ncObservaciones">Observaciones</label>
+              <input type="text" id="ncObservaciones" placeholder="Opcional" maxlength="200" />
+            </div>
+          </div>
+          <div class="admin-form-acciones">
+            <button type="submit" class="btn btn--dark">Crear Cita</button>
+            <button type="button" class="btn btn--outline" id="btnCancelarNuevaCita">Cancelar</button>
+          </div>
+          <div class="form-mensaje" id="nuevaCitaMensaje" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla">
+          <thead>
+            <tr><th>#</th><th>Cliente</th><th>Teléfono</th><th>Fecha/Hora</th><th>Servicio</th><th>Precio</th><th>Barbero</th><th>Estado</th><th>Acción</th></tr>
+          </thead>
+          <tbody id="citasBody">
+            <tr><td colspan="9" class="admin-tabla__cargando">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── BARBEROS ───────────────────────────────────────── -->
+    <section class="admin-seccion admin-seccion--oculta" id="seccionBarberos">
+      <div class="admin-seccion__header">
+        <h1 class="admin-titulo">Barberos</h1>
+        <button class="btn btn--dark" id="btnNuevoBarbero">+ Nuevo Barbero</button>
+      </div>
+      <div class="admin-form-panel" id="formBarberoPanel" style="display:none">
+        <h2 class="admin-form-titulo" id="formBarberoTitulo">Nuevo Barbero</h2>
+        <form id="formBarbero">
+          <input type="hidden" id="barberoId" />
+          <div class="admin-form-grid">
+            <div class="form-group"><label for="barberoNombre">Nombre *</label><input type="text" id="barberoNombre" required /></div>
+            <div class="form-group"><label for="barberoApellido">Apellido *</label><input type="text" id="barberoApellido" required /></div>
+            <div class="form-group"><label for="barberoTelefono">Teléfono</label><input type="text" id="barberoTelefono" /></div>
+            <div class="form-group"><label for="barberoFoto">URL Foto</label><input type="url" id="barberoFoto" /></div>
+            <div class="form-group admin-form-grid--full">
+              <label>Servicios / Especialidades</label>
+              <div id="barberoServiciosCheckboxContainer" class="admin-checkbox-container"></div>
+            </div>
+          </div>
+          <div class="admin-form-acciones">
+            <button type="submit" class="btn btn--dark">Guardar</button>
+            <button type="button" class="btn btn--outline" id="btnCancelarBarbero">Cancelar</button>
+          </div>
+          <div class="form-mensaje" id="barberoMensaje" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla">
+          <thead><tr><th>#</th><th>Foto</th><th>Nombre</th><th>Teléfono</th><th>Especialidades</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="barberosBody"><tr><td colspan="7" class="admin-tabla__cargando">Cargando...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SERVICIOS ──────────────────────────────────────── -->
+    <section class="admin-seccion admin-seccion--oculta" id="seccionServicios">
+      <div class="admin-seccion__header">
+        <h1 class="admin-titulo">Servicios</h1>
+        <button class="btn btn--dark" id="btnNuevoServicio">+ Nuevo Servicio</button>
+      </div>
+      <div class="admin-form-panel" id="formServicioPanel" style="display:none">
+        <h2 class="admin-form-titulo" id="formServicioTitulo">Nuevo Servicio</h2>
+        <form id="formServicio">
+          <input type="hidden" id="servicioId" />
+          <div class="admin-form-grid">
+            <div class="form-group"><label for="servicioNombre">Nombre *</label><input type="text" id="servicioNombre" required /></div>
+            <div class="form-group"><label for="servicioPrecio">Precio *</label><input type="number" id="servicioPrecio" step="0.01" min="0" required /></div>
+            <div class="form-group"><label for="servicioDuracion">Duración (min) *</label><input type="number" id="servicioDuracion" min="1" required /></div>
+            <div class="form-group admin-form-grid--full"><label for="servicioDescripcion">Descripción</label><input type="text" id="servicioDescripcion" /></div>
+          </div>
+          <div class="admin-form-acciones">
+            <button type="submit" class="btn btn--dark">Guardar</button>
+            <button type="button" class="btn btn--outline" id="btnCancelarServicio">Cancelar</button>
+          </div>
+          <div class="form-mensaje" id="servicioMensaje" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla">
+          <thead><tr><th>#</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Duración</th><th>Acciones</th></tr></thead>
+          <tbody id="serviciosBody"><tr><td colspan="6" class="admin-tabla__cargando">Cargando...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── CLIENTES ───────────────────────────────────────── -->
+    <section class="admin-seccion admin-seccion--oculta" id="seccionClientes">
+      <div class="admin-seccion__header">
+        <h1 class="admin-titulo">Clientes</h1>
+      </div>
+      <!-- Búsqueda -->
+      <div class="admin-filtros">
+        <div class="admin-filtro-grupo" style="flex:1">
+          <label for="buscarCliente">Buscar por nombre o email</label>
+          <input type="search" id="buscarCliente" placeholder="Ej: Juan o juan@email.com" />
+        </div>
+        <button class="btn btn--dark" id="btnBuscarCliente">Buscar</button>
+        <button class="btn btn--outline" id="btnLimpiarBusqueda">Todos</button>
+      </div>
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla">
+          <thead><tr><th>#</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Citas</th><th>Registrado</th><th>Ver</th></tr></thead>
+          <tbody id="clientesBody"><tr><td colspan="7" class="admin-tabla__cargando">Cargando...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast de notificaciones -->
+  <div id="adminToast" class="admin-toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Modal: historial de citas de un cliente -->
+  <div class="modal-overlay" id="modalHistorialCliente" hidden aria-modal="true" role="dialog"
+       aria-labelledby="tituloHistorialCliente">
+    <div class="modal" style="max-width:700px">
+      <div class="modal__header">
+        <h2 class="modal__titulo" id="tituloHistorialCliente">Historial de citas</h2>
+        <button class="modal__cerrar" id="btnCerrarHistorial" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="historialClienteContent">Cargando...</div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='admin.js') }}?v=2"></script>
+</body>
+</html>

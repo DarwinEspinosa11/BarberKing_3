@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Inicio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='themify-icons-font/themify-icons/themify-icons.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <a href="/" class="header__logo">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+      <span>BARBERKING</span>
+    </a>
+    <nav class="header__nav" aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#barberos">Barberos</a>
+      <a href="#galeria">Galería</a>
+      <a href="#agendar">Agendar</a>
+      <a href="#faq">FAQ</a>
+      <a href="/mis-citas">Mis Citas</a>
+      <div id="sesionNav"></div>
+    </nav>
+    <!-- Botón hamburguesa para móvil -->
+    <button class="header__burger" id="btnBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- MENÚ MÓVIL (overlay) -->
+  <nav class="nav-mobile" id="navMobile" aria-label="Menú móvil" hidden>
+    <a href="#servicios"  class="nav-mobile__link">Servicios</a>
+    <a href="#barberos"   class="nav-mobile__link">Barberos</a>
+    <a href="#galeria"    class="nav-mobile__link">Galería</a>
+    <a href="#agendar"    class="nav-mobile__link">Agendar</a>
+    <a href="#faq"        class="nav-mobile__link">FAQ</a>
+    <a href="/mis-citas"  class="nav-mobile__link">Mis Citas</a>
+    <div id="sesionNavMobile" class="nav-mobile__sesion"></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <p class="hero__subtitle">Cortes clásicos y modernos.<br />Los mejores barberos de la ciudad.</p>
+    <div class="hero__big-text" role="heading" aria-level="1" id="hero-heading">
+      <span class="hero__word hero__word--animated">
+        <i class="line line--bottom"></i>BARBER
+      </span>
+      <span class="hero__word hero__word--animated">KING</span>
+    </div>
+    <div class="hero__cta">
+      <a href="#agendar" class="btn btn--outline">Agendar Cita</a>
+      <a href="#servicios" class="btn btn--solid">Ver Servicios</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Corte Clásico</span><span class="sep">✦</span>
+      <span>Afeitado Navaja</span><span class="sep">✦</span>
+      <span>Corte + Barba</span><span class="sep">✦</span>
+      <span>Tinte</span><span class="sep">✦</span>
+      <span>Degradado Fade</span><span class="sep">✦</span>
+      <span>Corte Clásico</span><span class="sep">✦</span>
+      <span>Afeitado Navaja</span><span class="sep">✦</span>
+      <span>Corte + Barba</span><span class="sep">✦</span>
+      <span>Tinte</span><span class="sep">✦</span>
+      <span>Degradado Fade</span><span class="sep">✦</span>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios" aria-labelledby="servicios-heading">
+    <p class="section-label" aria-hidden="true">— Lo que ofrecemos</p>
+    <h2 class="section-title--big light" id="servicios-heading">NUESTROS SERVICIOS</h2>
+    <div class="servicios__grid" id="serviciosGrid" role="list">
+      <div class="servicio-card skeleton"></div>
+      <div class="servicio-card skeleton"></div>
+      <div class="servicio-card skeleton"></div>
+      <div class="servicio-card skeleton"></div>
+    </div>
+  </section>
+
+  <!-- BARBEROS -->
+  <section class="barberos" id="barberos" aria-labelledby="barberos-heading">
+    <p class="section-label" aria-hidden="true">— Nuestro equipo</p>
+    <h2 class="section-title--big light" id="barberos-heading">CONOCE A LOS BARBEROS</h2>
+    <div class="barberos__grid" id="barberosGrid" role="list">
+      <div class="barbero-card skeleton"></div>
+      <div class="barbero-card skeleton"></div>
+      <div class="barbero-card skeleton"></div>
+    </div>
+  </section>
+
+  <!-- AGENDAR -->
+  <section class="agendar" id="agendar" aria-labelledby="agendar-heading">
+
+    <!-- Contenedor anónimo: info + botones login/registro. Visible por defecto. -->
+    <div class="agendar__container" id="agendar__anon-wrap">
+      <div class="agendar__info">
+        <p class="section-label" aria-hidden="true">— Reserva tu lugar</p>
+        <h2 class="section-title--big dark" id="agendar-heading">AGENDA TU CITA</h2>
+        <p>Reserva en minutos. De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
+        <ul class="agendar__detalles">
+          <li><i class="atk-icon ti-location-pin"></i><span>Av. Ourense</span></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+34123456789">(+34) 123-456789</a></li>
+          <li><i class="ti-email"></i> <a href="mailto:contacto@barberking.com">contacto@barberking.com</a></li>
+        </ul>
+      </div>
+
+      <div class="agendar__anon" aria-live="polite">
+        <p class="section-label" aria-hidden="true">— Tu próxima cita te espera</p>
+        <p class="agendar__anon-msg">Crea tu cuenta gratis y reserva en minutos.</p>
+        <div class="agendar__anon-btns">
+          <a href="/login?tab=registro" class="btn btn--dark btn--full" id="btnIrRegistro">Crear Cuenta</a>
+          <a href="/login" class="btn btn--outline btn--full">Iniciar Sesión</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor logueado: formulario centrado. Oculto hasta confirmar sesión. -->
+    <div class="agendar__container agendar__container--centrado" id="agendar__form-wrap" hidden>
+      <div class="agendar__form-header">
+        <p class="section-label" aria-hidden="true">— Reserva tu lugar</p>
+        <h2 class="section-title--big dark" id="agendar-heading-logueado">AGENDA TU CITA</h2>
+        <p class="agendar__form-sub">De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
+      </div>
+
+      <form class="form-cita form-cita--centrada" id="formCita" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="barbero">Barbero <span class="required-mark">*</span></label>
+            <select id="barbero" name="barbero" aria-required="true" aria-describedby="error-barbero">
+              <option value="">— Selecciona un barbero —</option>
+            </select>
+            <span class="form-error" id="error-barbero" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio <span class="required-mark">*</span></label>
+            <select id="servicio" name="servicio" aria-required="true" aria-describedby="error-servicio">
+              <option value="">— Selecciona un servicio —</option>
+            </select>
+            <span class="form-error" id="error-servicio" role="alert" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fecha">Fecha <span class="required-mark">*</span></label>
+            <input type="date" id="fecha" aria-required="true" aria-describedby="error-fecha" />
+            <span class="form-error" id="error-fecha" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-group">
+            <label for="hora">Hora <span class="required-mark">*</span></label>
+            <input type="time" id="hora" min="09:00" max="18:30" step="1800"
+              aria-required="true" aria-describedby="error-hora hora-hint" />
+            <span class="form-hint" id="hora-hint">9:00 a 19:00 hrs</span>
+            <span class="form-error" id="error-hora" role="alert" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <p class="form-required-note">* Campos obligatorios</p>
+
+        <button type="submit" class="btn btn--dark btn--full" id="btnCita">
+          Confirmar Cita
+        </button>
+
+        <div class="form-mensaje" id="citaMensaje" role="status" aria-live="assertive"></div>
+      </form>
+    </div>
+
+  </section>
+
+  <!-- GALERÍA / PORTAFOLIO -->
+  <section class="galeria" id="galeria" aria-labelledby="galeria-heading">
+    <p class="section-label" aria-hidden="true">— Nuestro trabajo</p>
+    <h2 class="section-title--big light" id="galeria-heading">PORTAFOLIO</h2>
+    <div class="galeria__grid" role="list">
+      <article class="galeria-item" role="listitem">
+        <img src="https://cdn.pixabay.com/photo/2022/03/29/10/19/hair-stylist-7099180_960_720.jpg"
+          alt="Corte clásico con degradado" loading="lazy" />
+      </article>
+      <article class="galeria-item" role="listitem">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500&q=80"
+          alt="Afeitado tradicional" loading="lazy" />
+      </article>
+      <article class="galeria-item" role="listitem">
+        <img src="https://img.magnific.com/foto-gratis/hombre-corta-barba-barberia_1157-16040.jpg?t=st=1783687515~exp=1783691115~hmac=40ca03a5ad37ec6d0495e680c8ef3c62a81f0dfd9f373e24883c220870749736&w=1480"
+          alt="Tinte de cabello profesional" loading="lazy" />
+      </article>
+      <article class="galeria-item" role="listitem">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=500&q=80"
+          alt="Barbería moderna" loading="lazy" />
+      </article>
+      <article class="galeria-item" role="listitem">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=500&q=80"
+          alt="Arreglo de barba" loading="lazy" />
+      </article>
+      <article class="galeria-item" role="listitem">
+        <img src="https://img.magnific.com/foto-gratis/vista-lateral-peluquero-peine_23-2149870355.jpg?t=st=1783688008~exp=1783691608~hmac=547cd216251d737d7ea55c6ef6d2a1539219a38390ae0339c8f8a39de0a674ad&w=1480"
+          alt="Corte fade perfecto" loading="lazy" />
+      </article>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios" aria-labelledby="testimonios-heading">
+    <p class="section-label" aria-hidden="true">— Lo que dicen</p>
+    <h2 class="section-title--big dark" id="testimonios-heading">TESTIMONIOS</h2>
+    <div class="testimonios__grid" role="list">
+      <article class="testimonio-card" role="listitem">
+        <p class="testimonio-card__texto">"Excelente servicio. Carlos es un artista con la tijera. Siempre salgo como nuevo."</p>
+        <div class="testimonio-card__autor">
+          <span class="testimonio-card__nombre">Jorge Ramírez</span>
+          <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
+        </div>
+      </article>
+      <article class="testimonio-card" role="listitem">
+        <p class="testimonio-card__texto">"Mejor barbería de la zona. Ambiente profesional y precios justos. Totalmente recomendada."</p>
+        <div class="testimonio-card__autor">
+          <span class="testimonio-card__nombre">Luis Fernández</span>
+          <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
+        </div>
+      </article>
+      <article class="testimonio-card" role="listitem">
+        <p class="testimonio-card__texto">"Llevo años viniendo. Nunca me han fallado. El trato es cercano y el resultado impecable."</p>
+        <div class="testimonio-card__autor">
+          <span class="testimonio-card__nombre">Roberto Silva</span>
+          <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq" aria-labelledby="faq-heading">
+    <p class="section-label" aria-hidden="true">— Preguntas frecuentes</p>
+    <h2 class="section-title--big light" id="faq-heading">FAQ</h2>
+    <div class="faq__lista">
+      <details class="faq-item">
+        <summary class="faq-item__pregunta">¿Necesito cita previa? <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta">Sí, recomendamos agendar tu cita para garantizar tu horario preferido. Puedes hacerlo directamente desde nuestra web.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-item__pregunta">¿Cuáles son los métodos de pago aceptados? <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta">Aceptamos efectivo, tarjetas de crédito/débito y pagos digitales (Bizum, Apple Pay).</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-item__pregunta">¿Puedo cancelar o modificar mi cita? <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta">Sí. Puedes cancelar o modificar tu cita desde tu cuenta en "Mis Citas" con al menos 2 horas de anticipación.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-item__pregunta">¿Trabajan con niños? <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta">Sí, ofrecemos cortes infantiles (hasta 12 años). Nuestros barberos tienen experiencia atendiendo a los más pequeños.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-item__pregunta">¿Tienen productos para la venta? <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta">Sí, disponemos de una selección de productos profesionales para el cuidado del cabello y barba (ceras, aceites, champús).</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- HORARIOS + UBICACIÓN -->
+  <section class="info-local" id="ubicacion" aria-labelledby="info-heading">
+    <div class="info-local__container">
+
+      <!-- Horarios -->
+      <div class="info-local__horarios">
+        <p class="section-label" aria-hidden="true">— Cuándo encontrarnos</p>
+        <h2 class="section-title--big dark" id="info-heading">HORARIOS</h2>
+        <table class="horarios-tabla" aria-label="Horario de atención">
+          <tbody>
+            <tr><th scope="row">Lunes</th>      <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row">Martes</th>     <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row">Miércoles</th>  <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row">Jueves</th>     <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row">Viernes</th>    <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row">Sábado</th>     <td>09:00 — 15:00</td></tr>
+            <tr class="horarios-tabla__cerrado"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+          </tbody>
+        </table>
+        <ul class="info-local__contacto">
+          <li><i class="atk-icon ti-location-pin"></i> <a href="https://maps.google.com/?q=Ourense" target="_blank" rel="noopener">Av. Ourense, Orense</a></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+34123456789">(+34) 123-456789</a></li>
+          <li><i class="ti-email"></i> <a href="mailto:contacto@barberking.com">contacto@barberking.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Mapa -->
+      <div class="info-local__mapa">
+        <iframe
+          title="Ubicación de BarberKing en Ourense"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47248.39624694017!2d-7.936504!3d42.336111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2992afe30b7a31%3A0x3a462c5a6e1a1d40!2sOurense!5e0!3m2!1ses!2ses!4v1700000000000"
+          width="100%" height="100%" style="border:0;" allowfullscreen=""
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER COMPLETO -->
+  <footer class="footer footer--full" id="contacto" role="contentinfo">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__logo-text">BARBERKING</span>
+        <p>Barbería premium en Ourense.<br />Calidad, estilo y tradición.</p>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-titulo">Navegación</p>
+        <a href="#servicios">Servicios</a>
+        <a href="#barberos">Barberos</a>
+        <a href="#galeria">Galería</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-titulo">Legal</p>
+        <a href="/politica-de-privacidad">Política de privacidad</a>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/politica-de-cookies">Política de cookies</a>
+      </div>
+      <div class="footer__col">
+        <p class="footer__col-titulo">Contacto</p>
+        <a href="tel:+34123456789">(+34) 123-456789</a>
+        <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>
+        <a href="https://maps.google.com/?q=Ourense" target="_blank" rel="noopener">Av. Ourense, Orense</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 BarberKing. Todos los derechos reservados.</span>
+      <span class="footer__legal-links">
+        <a href="/politica-de-privacidad">Privacidad</a>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/politica-de-cookies">Cookies</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='auth.js') }}?v=2"></script>
+  <script src="{{ url_for('static', filename='main.js') }}?v=2"></script>
+
+  <!-- Banner de cookies -->
+  <div id="cookieBanner" class="cookie-banner" role="alertdialog" aria-labelledby="cookieMsg" hidden>
+    <p id="cookieMsg">Usamos cookies técnicas de sesión para el funcionamiento de la plataforma.
+      <a href="/politica-de-cookies">Más información</a>.
+    </p>
+    <button id="btnAceptarCookies" class="btn btn--dark">Aceptar</button>
+  </div>
+  <script>
+    (function() {
+      if (!localStorage.getItem("ck_ok")) {
+        document.getElementById("cookieBanner").hidden = false;
+      }
+      document.getElementById("btnAceptarCookies")?.addEventListener("click", function() {
+        localStorage.setItem("ck_ok", "1");
+        document.getElementById("cookieBanner").hidden = true;
+      });
+    })();
+  </script>
+</body>
+</html>

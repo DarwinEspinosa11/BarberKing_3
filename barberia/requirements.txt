@@ -1,0 +1,8 @@
+flask==3.0.3
+flask-cors==4.0.1
+flask-limiter==3.8.0
+flask-wtf==1.2.2
+mysql-connector-python==8.4.0
+python-dotenv==1.0.1
+#para instalar los requirimientos para arrancar la aplicacion
+# pip install -r requirements.txt

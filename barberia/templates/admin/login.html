@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card">
+      <div class="admin-login-header">         
+        <span class="admin-login-icon">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+        </span>
+        <h1 class="admin-login-titulo">PANEL ADMIN</h1>
+        <p class="admin-login-sub">BarberKing</p>
+      </div>
+      <form id="formAdminLogin" novalidate>
+        <div class="form-group">
+          <label for="usuario">Usuario</label>
+          <input type="text" id="usuario" placeholder="admin" autocomplete="username" />
+          <span class="form-error" id="error-usuario" role="alert"></span>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" />
+          <span class="form-error" id="error-password" role="alert"></span>
+        </div>
+        <button type="submit" class="btn btn--dark btn--full" id="btnAdminLogin">Entrar al Panel</button>
+        <div class="form-mensaje" id="loginMensaje" role="alert" aria-live="assertive"></div>
+      </form>
+      <p class="admin-login-volver"><a href="/">← Volver al sitio</a></p>
+    </div>
+  </main>
+  <script>
+    document.getElementById("formAdminLogin").addEventListener("submit", async e => {
+      e.preventDefault();
+      const usuario  = document.getElementById("usuario").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("loginMensaje");
+      const btn = document.getElementById("btnAdminLogin");
+      if (!usuario) { document.getElementById("error-usuario").textContent = "Introduce el usuario."; return; }
+      if (!password){ document.getElementById("error-password").textContent = "Introduce la contraseña."; return; }
+      btn.textContent = "Verificando..."; btn.classList.add("btn--loading");
+      try {
+        const res  = await fetch("/admin/login", { method:"POST", headers:{"Content-Type":"application/json"}, credentials:"include", body: JSON.stringify({usuario, password}) });
+        const data = await res.json();
+        if (res.ok) { msg.textContent = data.mensaje; msg.className = "form-mensaje success"; setTimeout(()=>{ window.location.href="/admin/"; },800); }
+        else        { msg.textContent = data.error;   msg.className = "form-mensaje error"; }
+      } catch { msg.textContent = "Error de conexión."; msg.className = "form-mensaje error"; }
+      finally { btn.textContent = "Entrar al Panel"; btn.classList.remove("btn--loading"); }
+    });
+  </script>
+</body>
+</html>

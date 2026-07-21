@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarberKing | Entrar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header" role="banner">
+    <a href="/login" class="header__logo" aria-label="BarberKing">
+      <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
+      <span>BARBERKING</span>
+    </a>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-card">
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab auth-tab--active" id="tabLogin"
+          role="tab" aria-selected="true" aria-controls="panelLogin">
+          Iniciar Sesión
+        </button>
+        <button class="auth-tab" id="tabRegistro"
+          role="tab" aria-selected="false" aria-controls="panelRegistro">
+          Crear Cuenta
+        </button>
+      </div>
+
+      <!-- LOGIN -->
+      <div id="panelLogin" role="tabpanel">
+        <form id="formLogin" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email <span class="required-mark">*</span></label>
+            <input type="email" id="loginEmail" placeholder="tu@email.com"
+              aria-required="true" autocomplete="email" />
+            <span class="form-error" id="error-loginEmail" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Contraseña <span class="required-mark">*</span></label>
+            <input type="password" id="loginPassword" placeholder="Tu contraseña"
+              aria-required="true" autocomplete="current-password" />
+            <span class="form-error" id="error-loginPassword" role="alert"></span>
+          </div>
+          <button type="submit" class="btn btn--dark btn--full" id="btnLogin">
+            Iniciar Sesión
+          </button>
+          <div class="form-mensaje" id="loginMensaje" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+
+      <!-- REGISTRO -->
+      <div id="panelRegistro" role="tabpanel" hidden>
+        <form id="formRegistro" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="regNombre">Nombre <span class="required-mark">*</span></label>
+              <input type="text" id="regNombre" placeholder="Ej. Juan"
+                aria-required="true" autocomplete="given-name" />
+              <span class="form-error" id="error-regNombre" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label for="regApellido">Apellido <span class="required-mark">*</span></label>
+              <input type="text" id="regApellido" placeholder="Ej. Pérez"
+                aria-required="true" autocomplete="family-name" />
+              <span class="form-error" id="error-regApellido" role="alert"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email <span class="required-mark">*</span></label>
+            <input type="email" id="regEmail" placeholder="tu@email.com"
+              aria-required="true" autocomplete="email" />
+            <span class="form-error" id="error-regEmail" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="regTelefono">Teléfono <span class="required-mark">*</span></label>
+            <input type="tel" id="regTelefono" placeholder="Ej. 5551234567"
+              aria-required="true" autocomplete="tel" />
+            <span class="form-error" id="error-regTelefono" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Contraseña <span class="required-mark">*</span></label>
+            <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres"
+              aria-required="true" autocomplete="new-password" />
+            <span class="form-error" id="error-regPassword" role="alert"></span>
+          </div>
+          <button type="submit" class="btn btn--dark btn--full" id="btnRegistro">
+            Crear Cuenta
+          </button>
+          <div class="form-mensaje" id="registroMensaje" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <span>2026 — BarberKing</span>
+    <span>Av. Principal #123, Col. Centro</span>
+    <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>
+  </footer>
+
+  <script src="{{ url_for('static', filename='auth.js') }}"></script>
+</body>
+</html>
