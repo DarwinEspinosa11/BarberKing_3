@@ -16,17 +16,22 @@
       <span>BARBERKING</span>
     </a>
     <nav class="header__nav">
-      <a href="/">Inicio</a>
-      <a href="/#agendar">Agendar</a>
-      <a href="/mis-citas" aria-current="page">Mis Citas</a>
+      <a href="/#servicios" data-i18n="nav.servicios">Inicio</a>
+      <a href="/#agendar" data-i18n="nav.agendar">Agendar</a>
+      <a href="/mis-citas" aria-current="page" data-i18n="nav.mis_citas">Mis Citas</a>
       <div id="sesionNav"></div>
+      <!-- Selector de idioma -->
+      <div class="lang-switcher" aria-label="Cambiar idioma">
+        <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="gl" aria-pressed="false">GL</button>
+      </div>
     </nav>
   </header>
 
   <!-- HERO pequeño -->
   <section class="hero hero--small" aria-labelledby="citas-heading">
     <div class="hero__big-text" role="heading" aria-level="1" id="citas-heading">
-      <span class="hero__word">MIS CITAS</span>
+      <span class="hero__word" data-i18n="citas.title">MIS CITAS</span>
     </div>
   </section>
 
@@ -35,8 +40,8 @@
 
     <!-- Barra de acciones superior -->
     <div class="citas-topbar">
-      <a href="/#agendar" class="btn btn--outline">+ Nueva Cita</a>
-      <button class="btn btn--ghost" id="btnVerPerfil" aria-label="Ver y editar mi perfil">
+      <a href="/#agendar" class="btn btn--outline" data-i18n="citas.nueva">+ Nueva Cita</a>
+      <button class="btn btn--ghost" id="btnVerPerfil" aria-label="Ver y editar mi perfil" data-i18n="citas.mi_perfil">
         Mi Perfil
       </button>
     </div>
@@ -44,11 +49,11 @@
     <!-- Tabs: Próximas / Historial -->
     <div class="citas-tabs" role="tablist" aria-label="Sección de citas">
       <button class="citas-tab citas-tab--active" id="tabProximas"
-        role="tab" aria-selected="true" aria-controls="panelProximas">
+        role="tab" aria-selected="true" aria-controls="panelProximas" data-i18n="citas.proximas">
         Próximas citas
       </button>
       <button class="citas-tab" id="tabHistorial"
-        role="tab" aria-selected="false" aria-controls="panelHistorial">
+        role="tab" aria-selected="false" aria-controls="panelHistorial" data-i18n="citas.historial">
         Historial
       </button>
     </div>
@@ -56,24 +61,24 @@
     <!-- Panel: Próximas -->
     <div id="panelProximas" role="tabpanel">
       <div class="galeria__filtros" id="filtrosEstadoProximas" role="group" aria-label="Filtrar próximas por estado">
-        <button class="filtro-btn filtro-btn--active" data-estado="" aria-pressed="true">Todas</button>
-        <button class="filtro-btn" data-estado="Pendiente"  aria-pressed="false">Pendiente</button>
-        <button class="filtro-btn" data-estado="Confirmada" aria-pressed="false">Confirmada</button>
+        <button class="filtro-btn filtro-btn--active" data-estado="" aria-pressed="true" data-i18n="citas.todas">Todas</button>
+        <button class="filtro-btn" data-estado="Pendiente"  aria-pressed="false" data-i18n="citas.pendiente">Pendiente</button>
+        <button class="filtro-btn" data-estado="Confirmada" aria-pressed="false" data-i18n="citas.confirmada">Confirmada</button>
       </div>
       <div id="citasProximasLista" class="citas-lista" aria-live="polite">
-        <p class="citas-cargando">Cargando...</p>
+        <p class="citas-cargando" data-i18n="citas.cargando">Cargando...</p>
       </div>
     </div>
 
     <!-- Panel: Historial -->
     <div id="panelHistorial" role="tabpanel" hidden>
       <div class="galeria__filtros" id="filtrosEstadoHistorial" role="group" aria-label="Filtrar historial por estado">
-        <button class="filtro-btn filtro-btn--active" data-estado="" aria-pressed="true">Todas</button>
-        <button class="filtro-btn" data-estado="Finalizada" aria-pressed="false">Finalizada</button>
-        <button class="filtro-btn" data-estado="Cancelada"  aria-pressed="false">Cancelada</button>
+        <button class="filtro-btn filtro-btn--active" data-estado="" aria-pressed="true" data-i18n="citas.todas">Todas</button>
+        <button class="filtro-btn" data-estado="Finalizada" aria-pressed="false" data-i18n="citas.finalizada">Finalizada</button>
+        <button class="filtro-btn" data-estado="Cancelada"  aria-pressed="false" data-i18n="citas.cancelada">Cancelada</button>
       </div>
       <div id="citasHistorialLista" class="citas-lista" aria-live="polite">
-        <p class="citas-cargando">Cargando...</p>
+        <p class="citas-cargando" data-i18n="citas.cargando">Cargando...</p>
       </div>
     </div>
 
@@ -86,7 +91,7 @@
        aria-labelledby="modalEditarTitulo">
     <div class="modal">
       <div class="modal__header">
-        <h2 class="modal__titulo" id="modalEditarTitulo">Modificar Cita</h2>
+        <h2 class="modal__titulo" id="modalEditarTitulo" data-i18n="modal.modificar_cita">Modificar Cita</h2>
         <button class="modal__cerrar" id="btnCerrarModalCita" aria-label="Cerrar">&times;</button>
       </div>
       <form id="formEditarCita" novalidate>
@@ -144,16 +149,16 @@
        aria-labelledby="modalPerfilTitulo">
     <div class="modal">
       <div class="modal__header">
-        <h2 class="modal__titulo" id="modalPerfilTitulo">Mi Perfil</h2>
+        <h2 class="modal__titulo" id="modalPerfilTitulo" data-i18n="perfil.title">Mi Perfil</h2>
         <button class="modal__cerrar" id="btnCerrarModalPerfil" aria-label="Cerrar">&times;</button>
       </div>
 
       <!-- Pestañas dentro del modal -->
       <div class="modal-tabs" role="tablist">
         <button class="modal-tab modal-tab--active" id="tabDatos"
-          role="tab" aria-selected="true" aria-controls="panelDatos">Mis Datos</button>
+          role="tab" aria-selected="true" aria-controls="panelDatos" data-i18n="perfil_misDatos" >Mis Datos</button>
         <button class="modal-tab" id="tabPassword"
-          role="tab" aria-selected="false" aria-controls="panelPassword">Contraseña</button>
+          role="tab" aria-selected="false" aria-controls="panelPassword" data-i18n="perfil_misContraseñas">Contraseña</button>
       </div>
 
       <!-- Panel: Editar datos -->
@@ -161,12 +166,12 @@
         <form id="formPerfil" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="perfNombre">Nombre <span class="required-mark">*</span></label>
+              <label for="perfNombre" data-i18n="perfil_nombre" >Nombre <span class="required-mark">*</span></label>
               <input type="text" id="perfNombre" aria-required="true" autocomplete="given-name" />
               <span class="form-error" id="error-perfNombre" role="alert"></span>
             </div>
             <div class="form-group">
-              <label for="perfApellido">Apellido <span class="required-mark">*</span></label>
+              <label for="perfApellido" data-i18n="perfil_apellido">Apellido <span class="required-mark">*</span></label>
               <input type="text" id="perfApellido" aria-required="true" autocomplete="family-name" />
               <span class="form-error" id="error-perfApellido" role="alert"></span>
             </div>
@@ -183,7 +188,7 @@
             <span class="form-hint">El email no se puede modificar.</span>
           </div>
           <div class="modal__acciones">
-            <button type="submit" class="btn btn--dark" id="btnGuardarPerfil">Guardar cambios</button>
+            <button type="submit" class="btn btn--dark" id="btnGuardarPerfil" data-i18n="formBtn_guardarCambios" >Guardar cambios</button>
           </div>
           <div class="form-mensaje" id="perfilMensaje" role="alert" aria-live="assertive"></div>
         </form>
@@ -227,6 +232,7 @@
     </span>
   </footer>
 
+  <script src="{{ url_for('static', filename='i18n/i18n.js') }}?v=1"></script>
   <script src="{{ url_for('static', filename='auth.js') }}?v=2"></script>
   <script src="{{ url_for('static', filename='mis_citas.js') }}?v=2"></script>
 </body>

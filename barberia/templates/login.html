@@ -14,6 +14,11 @@
       <img src="{{ url_for('static', filename='img/logo2.png') }}" alt="Logo BarberKing" />
       <span>BARBERKING</span>
     </a>
+    <!-- Selector de idioma -->
+    <div class="lang-switcher" aria-label="Cambiar idioma">
+      <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="gl" aria-pressed="false">GL</button>
+    </div>
   </header>
 
   <main class="auth-page">
@@ -21,11 +26,11 @@
 
       <div class="auth-tabs" role="tablist">
         <button class="auth-tab auth-tab--active" id="tabLogin"
-          role="tab" aria-selected="true" aria-controls="panelLogin">
+          role="tab" aria-selected="true" aria-controls="panelLogin" data-i18n="login.tab_login">
           Iniciar Sesión
         </button>
         <button class="auth-tab" id="tabRegistro"
-          role="tab" aria-selected="false" aria-controls="panelRegistro">
+          role="tab" aria-selected="false" aria-controls="panelRegistro" data-i18n="login.tab_registro">
           Crear Cuenta
         </button>
       </div>
@@ -34,18 +39,18 @@
       <div id="panelLogin" role="tabpanel">
         <form id="formLogin" novalidate>
           <div class="form-group">
-            <label for="loginEmail">Email <span class="required-mark">*</span></label>
-            <input type="email" id="loginEmail" placeholder="tu@email.com"
+            <label for="loginEmail" data-i18n="login.email">Email <span class="required-mark">*</span></label>
+            <input type="email" id="loginEmail" data-i18n-placeholder="login.placeholder_email" placeholder="tu@email.com"
               aria-required="true" autocomplete="email" />
             <span class="form-error" id="error-loginEmail" role="alert"></span>
           </div>
           <div class="form-group">
-            <label for="loginPassword">Contraseña <span class="required-mark">*</span></label>
-            <input type="password" id="loginPassword" placeholder="Tu contraseña"
+            <label for="loginPassword" data-i18n="login.password">Contraseña <span class="required-mark">*</span></label>
+            <input type="password" id="loginPassword" data-i18n-placeholder="login.placeholder_password" placeholder="Tu contraseña"
               aria-required="true" autocomplete="current-password" />
             <span class="form-error" id="error-loginPassword" role="alert"></span>
           </div>
-          <button type="submit" class="btn btn--dark btn--full" id="btnLogin">
+          <button type="submit" class="btn btn--dark btn--full" id="btnLogin" data-i18n="login.btn_login">
             Iniciar Sesión
           </button>
           <div class="form-mensaje" id="loginMensaje" role="alert" aria-live="assertive"></div>
@@ -57,37 +62,37 @@
         <form id="formRegistro" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="regNombre">Nombre <span class="required-mark">*</span></label>
-              <input type="text" id="regNombre" placeholder="Ej. Juan"
+              <label for="regNombre" data-i18n="login.nombre">Nombre <span class="required-mark">*</span></label>
+              <input type="text" id="regNombre" data-i18n-placeholder="login.placeholder_nombre" placeholder="Ej. Juan"
                 aria-required="true" autocomplete="given-name" />
               <span class="form-error" id="error-regNombre" role="alert"></span>
             </div>
             <div class="form-group">
-              <label for="regApellido">Apellido <span class="required-mark">*</span></label>
-              <input type="text" id="regApellido" placeholder="Ej. Pérez"
+              <label for="regApellido" data-i18n="login.apellido">Apellido <span class="required-mark">*</span></label>
+              <input type="text" id="regApellido" data-i18n-placeholder="login.placeholder_apellido" placeholder="Ej. Pérez"
                 aria-required="true" autocomplete="family-name" />
               <span class="form-error" id="error-regApellido" role="alert"></span>
             </div>
           </div>
           <div class="form-group">
-            <label for="regEmail">Email <span class="required-mark">*</span></label>
-            <input type="email" id="regEmail" placeholder="tu@email.com"
+            <label for="regEmail" data-i18n="login.email">Email <span class="required-mark">*</span></label>
+            <input type="email" id="regEmail" data-i18n-placeholder="login.placeholder_email" placeholder="tu@email.com"
               aria-required="true" autocomplete="email" />
             <span class="form-error" id="error-regEmail" role="alert"></span>
           </div>
           <div class="form-group">
-            <label for="regTelefono">Teléfono <span class="required-mark">*</span></label>
-            <input type="tel" id="regTelefono" placeholder="Ej. 5551234567"
+            <label for="regTelefono" data-i18n="login.telefono">Teléfono <span class="required-mark">*</span></label>
+            <input type="tel" id="regTelefono" data-i18n-placeholder="login.placeholder_telefono" placeholder="Ej. 5551234567"
               aria-required="true" autocomplete="tel" />
             <span class="form-error" id="error-regTelefono" role="alert"></span>
           </div>
           <div class="form-group">
-            <label for="regPassword">Contraseña <span class="required-mark">*</span></label>
-            <input type="password" id="regPassword" placeholder="Mínimo 6 caracteres"
+            <label for="regPassword" data-i18n="login.password">Contraseña <span class="required-mark">*</span></label>
+            <input type="password" id="regPassword" data-i18n-placeholder="login.placeholder_new_password" placeholder="Mínimo 6 caracteres"
               aria-required="true" autocomplete="new-password" />
             <span class="form-error" id="error-regPassword" role="alert"></span>
           </div>
-          <button type="submit" class="btn btn--dark btn--full" id="btnRegistro">
+          <button type="submit" class="btn btn--dark btn--full" id="btnRegistro" data-i18n="login.btn_registro">
             Crear Cuenta
           </button>
           <div class="form-mensaje" id="registroMensaje" role="alert" aria-live="assertive"></div>
@@ -103,6 +108,7 @@
     <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>
   </footer>
 
+  <script src="{{ url_for('static', filename='i18n/i18n.js') }}?v=1"></script>
   <script src="{{ url_for('static', filename='auth.js') }}"></script>
 </body>
 </html>

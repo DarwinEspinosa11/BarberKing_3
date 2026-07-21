@@ -197,11 +197,14 @@ function renderizarLista(citas, contenedorId, esCancelable) {
   const contenedor = document.getElementById(contenedorId);
 
   // Si no hay citas, mostrar mensaje vacío
+
+   // <p data-i18n="vacio_Aviso">${esCancelable ? "No tienes citas próximas." : "No hay citas en el historial."}</p> copiar
+
   if (citas.length === 0) {
     contenedor.innerHTML = `
       <div class="citas-vacio">
-        <p>${esCancelable ? "No tienes citas próximas." : "No hay citas en el historial."}</p>
-        ${esCancelable ? '<a href="/#agendar" class="btn btn--outline" style="margin-top:1rem">Agendar una cita</a>' : ""}
+        ${esCancelable ? '<p data-i18n="vacio_Aviso">No tienes citas próximas.</p>':'<p data-i18n="vacio_Aviso1">No hay citas en el historial.</p>'}
+        ${esCancelable ? '<a href="/#agendar" class="btn btn--outline" style="margin-top:1rem"  data-i18n="vacio_agendar" >Agendar una cita</a>' : ""}
       </div>`;
     return;
   }
@@ -501,6 +504,8 @@ async function abrirModalPerfil() {
       document.getElementById("perfApellido").value = data.cliente.apellido;
       document.getElementById("perfTelefono").value = data.cliente.telefono || "";
       document.getElementById("perfEmail").value    = data.cliente.email;
+      document.getElementsByClassName("perfil_nombre").value = data.cliente.nombre;
+      document.getElementsByClassName("perfil_apellido").value = data.cliente.apellido;
     }
   } catch (err) {
     console.error("Error cargando perfil:", err);

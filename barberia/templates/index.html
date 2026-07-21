@@ -17,13 +17,18 @@
       <span>BARBERKING</span>
     </a>
     <nav class="header__nav" aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#barberos">Barberos</a>
-      <a href="#galeria">Galería</a>
-      <a href="#agendar">Agendar</a>
-      <a href="#faq">FAQ</a>
-      <a href="/mis-citas">Mis Citas</a>
+      <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+      <a href="#barberos" data-i18n="nav.barberos">Barberos</a>
+      <a href="#galeria" data-i18n="nav.galeria">Galería</a>
+      <a href="#agendar" data-i18n="nav.agendar">Agendar</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="/mis-citas" data-i18n="nav.mis_citas">Mis Citas</a>
       <div id="sesionNav"></div>
+      <!-- Selector de idioma -->
+      <div class="lang-switcher" aria-label="Cambiar idioma">
+        <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="gl" aria-pressed="false">GL</button>
+      </div>
     </nav>
     <!-- Botón hamburguesa para móvil -->
     <button class="header__burger" id="btnBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
@@ -33,18 +38,23 @@
 
   <!-- MENÚ MÓVIL (overlay) -->
   <nav class="nav-mobile" id="navMobile" aria-label="Menú móvil" hidden>
-    <a href="#servicios"  class="nav-mobile__link">Servicios</a>
-    <a href="#barberos"   class="nav-mobile__link">Barberos</a>
-    <a href="#galeria"    class="nav-mobile__link">Galería</a>
-    <a href="#agendar"    class="nav-mobile__link">Agendar</a>
-    <a href="#faq"        class="nav-mobile__link">FAQ</a>
-    <a href="/mis-citas"  class="nav-mobile__link">Mis Citas</a>
+    <a href="#servicios"  class="nav-mobile__link" data-i18n="nav.servicios">Servicios</a>
+    <a href="#barberos"   class="nav-mobile__link" data-i18n="nav.barberos">Barberos</a>
+    <a href="#galeria"    class="nav-mobile__link" data-i18n="nav.galeria">Galería</a>
+    <a href="#agendar"    class="nav-mobile__link" data-i18n="nav.agendar">Agendar</a>
+    <a href="#faq"        class="nav-mobile__link" data-i18n="nav.faq">FAQ</a>
+    <a href="/mis-citas"  class="nav-mobile__link" data-i18n="nav.mis_citas">Mis Citas</a>
     <div id="sesionNavMobile" class="nav-mobile__sesion"></div>
+    <!-- Selector de idioma móvil -->
+    <div class="lang-switcher lang-switcher--mobile" aria-label="Cambiar idioma">
+      <button class="lang-btn lang-btn--active" data-lang="es" aria-pressed="true">ES</button>
+      <button class="lang-btn" data-lang="gl" aria-pressed="false">GL</button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-heading">
-    <p class="hero__subtitle">Cortes clásicos y modernos.<br />Los mejores barberos de la ciudad.</p>
+    <p class="hero__subtitle" data-i18n-html="hero.subtitle">Cortes clásicos y modernos.<br />Los mejores barberos de la ciudad.</p>
     <div class="hero__big-text" role="heading" aria-level="1" id="hero-heading">
       <span class="hero__word hero__word--animated">
         <i class="line line--bottom"></i>BARBER
@@ -52,8 +62,8 @@
       <span class="hero__word hero__word--animated">KING</span>
     </div>
     <div class="hero__cta">
-      <a href="#agendar" class="btn btn--outline">Agendar Cita</a>
-      <a href="#servicios" class="btn btn--solid">Ver Servicios</a>
+      <a href="#agendar" class="btn btn--outline" data-i18n="hero.cta_agendar">Agendar Cita</a>
+      <a href="#servicios" class="btn btn--solid" data-i18n="hero.cta_servicios">Ver Servicios</a>
     </div>
   </section>
 
@@ -75,8 +85,8 @@
 
   <!-- SERVICIOS -->
   <section class="servicios" id="servicios" aria-labelledby="servicios-heading">
-    <p class="section-label" aria-hidden="true">— Lo que ofrecemos</p>
-    <h2 class="section-title--big light" id="servicios-heading">NUESTROS SERVICIOS</h2>
+    <p class="section-label" aria-hidden="true" data-i18n="section.servicios_label">— Lo que ofrecemos</p>
+    <h2 class="section-title--big light" id="servicios-heading" data-i18n="section.servicios_title">NUESTROS SERVICIOS</h2>
     <div class="servicios__grid" id="serviciosGrid" role="list">
       <div class="servicio-card skeleton"></div>
       <div class="servicio-card skeleton"></div>
@@ -87,8 +97,8 @@
 
   <!-- BARBEROS -->
   <section class="barberos" id="barberos" aria-labelledby="barberos-heading">
-    <p class="section-label" aria-hidden="true">— Nuestro equipo</p>
-    <h2 class="section-title--big light" id="barberos-heading">CONOCE A LOS BARBEROS</h2>
+    <p class="section-label" aria-hidden="true" data-i18n="section.barberos_label">— Nuestro equipo</p>
+    <h2 class="section-title--big light" id="barberos-heading" data-i18n="section.barberos_title">CONOCE A LOS BARBEROS</h2>
     <div class="barberos__grid" id="barberosGrid" role="list">
       <div class="barbero-card skeleton"></div>
       <div class="barbero-card skeleton"></div>
@@ -102,9 +112,9 @@
     <!-- Contenedor anónimo: info + botones login/registro. Visible por defecto. -->
     <div class="agendar__container" id="agendar__anon-wrap">
       <div class="agendar__info">
-        <p class="section-label" aria-hidden="true">— Reserva tu lugar</p>
-        <h2 class="section-title--big dark" id="agendar-heading">AGENDA TU CITA</h2>
-        <p>Reserva en minutos. De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
+        <p class="section-label" aria-hidden="true" data-i18n="agendar.label">— Reserva tu lugar</p>
+        <h2 class="section-title--big dark" id="agendar-heading" data-i18n="agendar.title">AGENDA TU CITA</h2>
+        <p data-i18n-html="agendar.horario">Reserva en minutos. De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
         <ul class="agendar__detalles">
           <li><i class="atk-icon ti-location-pin"></i><span>Av. Ourense</span></li>
           <li><i class="fa-solid fa-phone"></i> <a href="tel:+34123456789">(+34) 123-456789</a></li>
@@ -113,11 +123,11 @@
       </div>
 
       <div class="agendar__anon" aria-live="polite">
-        <p class="section-label" aria-hidden="true">— Tu próxima cita te espera</p>
-        <p class="agendar__anon-msg">Crea tu cuenta gratis y reserva en minutos.</p>
+        <p class="section-label" aria-hidden="true" data-i18n="agendar.anon_label">— Tu próxima cita te espera</p>
+        <p class="agendar__anon-msg" data-i18n="agendar.anon_msg">Crea tu cuenta gratis y reserva en minutos.</p>
         <div class="agendar__anon-btns">
-          <a href="/login?tab=registro" class="btn btn--dark btn--full" id="btnIrRegistro">Crear Cuenta</a>
-          <a href="/login" class="btn btn--outline btn--full">Iniciar Sesión</a>
+          <a href="/login?tab=registro" class="btn btn--dark btn--full" id="btnIrRegistro" data-i18n="agendar.btn_registro">Crear Cuenta</a>
+          <a href="/login" class="btn btn--outline btn--full" data-i18n="agendar.btn_login">Iniciar Sesión</a>
         </div>
       </div>
     </div>
@@ -125,24 +135,24 @@
     <!-- Contenedor logueado: formulario centrado. Oculto hasta confirmar sesión. -->
     <div class="agendar__container agendar__container--centrado" id="agendar__form-wrap" hidden>
       <div class="agendar__form-header">
-        <p class="section-label" aria-hidden="true">— Reserva tu lugar</p>
-        <h2 class="section-title--big dark" id="agendar-heading-logueado">AGENDA TU CITA</h2>
-        <p class="agendar__form-sub">De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
+        <p class="section-label" aria-hidden="true" data-i18n="agendar.label">— Reserva tu lugar</p>
+        <h2 class="section-title--big dark" id="agendar-heading-logueado" data-i18n="agendar.title">AGENDA TU CITA</h2>
+        <p class="agendar__form-sub" data-i18n-html="agendar.form_sub">De <strong>lunes a sábado</strong>, <strong>9:00 a 19:00 hrs</strong>.</p>
       </div>
 
       <form class="form-cita form-cita--centrada" id="formCita" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label for="barbero">Barbero <span class="required-mark">*</span></label>
+            <label for="barbero" data-i18n="form.barbero">Barbero <span class="required-mark">*</span></label>
             <select id="barbero" name="barbero" aria-required="true" aria-describedby="error-barbero">
-              <option value="">— Selecciona un barbero —</option>
+              <option value="" data-i18n="form.select_barbero">— Selecciona un barbero —</option>
             </select>
             <span class="form-error" id="error-barbero" role="alert" aria-live="polite"></span>
           </div>
           <div class="form-group">
-            <label for="servicio">Servicio <span class="required-mark">*</span></label>
+            <label for="servicio" data-i18n="form.servicio">Servicio <span class="required-mark">*</span></label>
             <select id="servicio" name="servicio" aria-required="true" aria-describedby="error-servicio">
-              <option value="">— Selecciona un servicio —</option>
+              <option value="" data-i18n="form.select_servicio">— Selecciona un servicio —</option>
             </select>
             <span class="form-error" id="error-servicio" role="alert" aria-live="polite"></span>
           </div>
@@ -150,22 +160,22 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="fecha">Fecha <span class="required-mark">*</span></label>
+            <label for="fecha" data-i18n="form.fecha">Fecha <span class="required-mark">*</span></label>
             <input type="date" id="fecha" aria-required="true" aria-describedby="error-fecha" />
             <span class="form-error" id="error-fecha" role="alert" aria-live="polite"></span>
           </div>
           <div class="form-group">
-            <label for="hora">Hora <span class="required-mark">*</span></label>
+            <label for="hora" data-i18n="form.hora">Hora <span class="required-mark">*</span></label>
             <input type="time" id="hora" min="09:00" max="18:30" step="1800"
               aria-required="true" aria-describedby="error-hora hora-hint" />
-            <span class="form-hint" id="hora-hint">9:00 a 19:00 hrs</span>
+            <span class="form-hint" id="hora-hint" data-i18n="form.hora_hint">9:00 a 19:00 hrs</span>
             <span class="form-error" id="error-hora" role="alert" aria-live="polite"></span>
           </div>
         </div>
 
-        <p class="form-required-note">* Campos obligatorios</p>
+        <p class="form-required-note" data-i18n="form.campos_obligatorios">* Campos obligatorios</p>
 
-        <button type="submit" class="btn btn--dark btn--full" id="btnCita">
+        <button type="submit" class="btn btn--dark btn--full" id="btnCita" data-i18n="form.confirmar_cita">
           Confirmar Cita
         </button>
 
@@ -177,8 +187,8 @@
 
   <!-- GALERÍA / PORTAFOLIO -->
   <section class="galeria" id="galeria" aria-labelledby="galeria-heading">
-    <p class="section-label" aria-hidden="true">— Nuestro trabajo</p>
-    <h2 class="section-title--big light" id="galeria-heading">PORTAFOLIO</h2>
+    <p class="section-label" aria-hidden="true" data-i18n="galeria.label">— Nuestro trabajo</p>
+    <h2 class="section-title--big light" id="galeria-heading" data-i18n="galeria.title">PORTAFOLIO</h2>
     <div class="galeria__grid" role="list">
       <article class="galeria-item" role="listitem">
         <img src="https://cdn.pixabay.com/photo/2022/03/29/10/19/hair-stylist-7099180_960_720.jpg"
@@ -209,27 +219,27 @@
 
   <!-- TESTIMONIOS -->
   <section class="testimonios" id="testimonios" aria-labelledby="testimonios-heading">
-    <p class="section-label" aria-hidden="true">— Lo que dicen</p>
-    <h2 class="section-title--big dark" id="testimonios-heading">TESTIMONIOS</h2>
+    <p class="section-label" aria-hidden="true" data-i18n="testimonios.label">— Lo que dicen</p>
+    <h2 class="section-title--big dark" id="testimonios-heading" data-i18n="testimonios.title">TESTIMONIOS</h2>
     <div class="testimonios__grid" role="list">
       <article class="testimonio-card" role="listitem">
-        <p class="testimonio-card__texto">"Excelente servicio. Carlos es un artista con la tijera. Siempre salgo como nuevo."</p>
+        <p class="testimonio-card__texto" data-i18n="testimonios.t1">"Excelente servicio. Carlos es un artista con la tijera. Siempre salgo como nuevo."</p>
         <div class="testimonio-card__autor">
-          <span class="testimonio-card__nombre">Jorge Ramírez</span>
+          <span class="testimonio-card__nombre" data-i18n="testimonios.a1">Jorge Ramírez</span>
           <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
         </div>
       </article>
       <article class="testimonio-card" role="listitem">
-        <p class="testimonio-card__texto">"Mejor barbería de la zona. Ambiente profesional y precios justos. Totalmente recomendada."</p>
+        <p class="testimonio-card__texto" data-i18n="testimonios.t2">"Mejor barbería de la zona. Ambiente profesional y precios justos. Totalmente recomendada."</p>
         <div class="testimonio-card__autor">
-          <span class="testimonio-card__nombre">Luis Fernández</span>
+          <span class="testimonio-card__nombre" data-i18n="testimonios.a2">Luis Fernández</span>
           <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
         </div>
       </article>
       <article class="testimonio-card" role="listitem">
-        <p class="testimonio-card__texto">"Llevo años viniendo. Nunca me han fallado. El trato es cercano y el resultado impecable."</p>
+        <p class="testimonio-card__texto" data-i18n="testimonios.t3">"Llevo años viniendo. Nunca me han fallado. El trato es cercano y el resultado impecable."</p>
         <div class="testimonio-card__autor">
-          <span class="testimonio-card__nombre">Roberto Silva</span>
+          <span class="testimonio-card__nombre" data-i18n="testimonios.a3">Roberto Silva</span>
           <span class="testimonio-card__estrellas" aria-label="5 de 5 estrellas">★★★★★</span>
         </div>
       </article>
@@ -238,28 +248,28 @@
 
   <!-- FAQ -->
   <section class="faq" id="faq" aria-labelledby="faq-heading">
-    <p class="section-label" aria-hidden="true">— Preguntas frecuentes</p>
-    <h2 class="section-title--big light" id="faq-heading">FAQ</h2>
+    <p class="section-label" aria-hidden="true" data-i18n="faq.label">— Preguntas frecuentes</p>
+    <h2 class="section-title--big light" id="faq-heading" data-i18n="faq.title">FAQ</h2>
     <div class="faq__lista">
       <details class="faq-item">
-        <summary class="faq-item__pregunta">¿Necesito cita previa? <span aria-hidden="true">+</span></summary>
-        <div class="faq-item__respuesta">Sí, recomendamos agendar tu cita para garantizar tu horario preferido. Puedes hacerlo directamente desde nuestra web.</div>
+        <summary class="faq-item__pregunta"><span data-i18n="faq.q1">¿Necesito cita previa?</span> <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta" data-i18n="faq.a1">Sí, recomendamos agendar tu cita para garantizar tu horario preferido. Puedes hacerlo directamente desde nuestra web.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__pregunta">¿Cuáles son los métodos de pago aceptados? <span aria-hidden="true">+</span></summary>
-        <div class="faq-item__respuesta">Aceptamos efectivo, tarjetas de crédito/débito y pagos digitales (Bizum, Apple Pay).</div>
+        <summary class="faq-item__pregunta"><span data-i18n="faq.q2">¿Cuáles son los métodos de pago aceptados?</span> <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta" data-i18n="faq.a2">Aceptamos efectivo, tarjetas de crédito/débito y pagos digitales (Bizum, Apple Pay).</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__pregunta">¿Puedo cancelar o modificar mi cita? <span aria-hidden="true">+</span></summary>
-        <div class="faq-item__respuesta">Sí. Puedes cancelar o modificar tu cita desde tu cuenta en "Mis Citas" con al menos 2 horas de anticipación.</div>
+        <summary class="faq-item__pregunta"><span data-i18n="faq.q3">¿Puedo cancelar o modificar mi cita?</span> <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta" data-i18n="faq.a3">Sí. Puedes cancelar o modificar tu cita desde tu cuenta en "Mis Citas" con al menos 2 horas de anticipación.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__pregunta">¿Trabajan con niños? <span aria-hidden="true">+</span></summary>
-        <div class="faq-item__respuesta">Sí, ofrecemos cortes infantiles (hasta 12 años). Nuestros barberos tienen experiencia atendiendo a los más pequeños.</div>
+        <summary class="faq-item__pregunta"><span data-i18n="faq.q4">¿Trabajan con niños?</span> <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta" data-i18n="faq.a4">Sí, ofrecemos cortes infantiles (hasta 12 años). Nuestros barberos tienen experiencia atendiendo a los más pequeños.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-item__pregunta">¿Tienen productos para la venta? <span aria-hidden="true">+</span></summary>
-        <div class="faq-item__respuesta">Sí, disponemos de una selección de productos profesionales para el cuidado del cabello y barba (ceras, aceites, champús).</div>
+        <summary class="faq-item__pregunta"><span data-i18n="faq.q5">¿Tienen productos para la venta?</span> <span aria-hidden="true">+</span></summary>
+        <div class="faq-item__respuesta" data-i18n="faq.a5">Sí, disponemos de una selección de productos profesionales para el cuidado del cabello y barba (ceras, aceites, champús).</div>
       </details>
     </div>
   </section>
@@ -270,17 +280,17 @@
 
       <!-- Horarios -->
       <div class="info-local__horarios">
-        <p class="section-label" aria-hidden="true">— Cuándo encontrarnos</p>
-        <h2 class="section-title--big dark" id="info-heading">HORARIOS</h2>
+        <p class="section-label" aria-hidden="true" data-i18n="horarios.label">— Cuándo encontrarnos</p>
+        <h2 class="section-title--big dark" id="info-heading" data-i18n="horarios.title">HORARIOS</h2>
         <table class="horarios-tabla" aria-label="Horario de atención">
           <tbody>
-            <tr><th scope="row">Lunes</th>      <td>09:00 — 19:00</td></tr>
-            <tr><th scope="row">Martes</th>     <td>09:00 — 19:00</td></tr>
-            <tr><th scope="row">Miércoles</th>  <td>09:00 — 19:00</td></tr>
-            <tr><th scope="row">Jueves</th>     <td>09:00 — 19:00</td></tr>
-            <tr><th scope="row">Viernes</th>    <td>09:00 — 19:00</td></tr>
-            <tr><th scope="row">Sábado</th>     <td>09:00 — 15:00</td></tr>
-            <tr class="horarios-tabla__cerrado"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+            <tr><th scope="row" data-i18n="horarios.lunes">Lunes</th>      <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row" data-i18n="horarios.martes">Martes</th>     <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row" data-i18n="horarios.miercoles">Miércoles</th>  <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row" data-i18n="horarios.jueves">Jueves</th>     <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row" data-i18n="horarios.viernes">Viernes</th>    <td>09:00 — 19:00</td></tr>
+            <tr><th scope="row" data-i18n="horarios.sabado">Sábado</th>     <td>09:00 — 15:00</td></tr>
+            <tr class="horarios-tabla__cerrado"><th scope="row" data-i18n="horarios.domingo">Domingo</th><td data-i18n="horarios.cerrado">Cerrado</td></tr>
           </tbody>
         </table>
         <ul class="info-local__contacto">
@@ -308,48 +318,49 @@
     <div class="footer__top">
       <div class="footer__brand">
         <span class="footer__logo-text">BARBERKING</span>
-        <p>Barbería premium en Ourense.<br />Calidad, estilo y tradición.</p>
+        <p data-i18n-html="footer.desc">Barbería premium en Ourense.<br />Calidad, estilo y tradición.</p>
       </div>
       <div class="footer__col">
-        <p class="footer__col-titulo">Navegación</p>
-        <a href="#servicios">Servicios</a>
-        <a href="#barberos">Barberos</a>
-        <a href="#galeria">Galería</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#faq">FAQ</a>
+        <p class="footer__col-titulo" data-i18n="footer.navegacion">Navegación</p>
+        <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+        <a href="#barberos" data-i18n="nav.barberos">Barberos</a>
+        <a href="#galeria" data-i18n="nav.galeria">Galería</a>
+        <a href="#testimonios" data-i18n="testimonios.title">Testimonios</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
       </div>
       <div class="footer__col">
-        <p class="footer__col-titulo">Legal</p>
-        <a href="/politica-de-privacidad">Política de privacidad</a>
-        <a href="/aviso-legal">Aviso legal</a>
-        <a href="/politica-de-cookies">Política de cookies</a>
+        <p class="footer__col-titulo" data-i18n="footer.legal">Legal</p>
+        <a href="/politica-de-privacidad" data-i18n="footer.privacidad">Política de privacidad</a>
+        <a href="/aviso-legal" data-i18n="footer.aviso_legal">Aviso legal</a>
+        <a href="/politica-de-cookies" data-i18n="footer.cookies">Política de cookies</a>
       </div>
       <div class="footer__col">
-        <p class="footer__col-titulo">Contacto</p>
+        <p class="footer__col-titulo" data-i18n="footer.contacto">Contacto</p>
         <a href="tel:+34123456789">(+34) 123-456789</a>
         <a href="mailto:contacto@barberking.com">contacto@barberking.com</a>
         <a href="https://maps.google.com/?q=Ourense" target="_blank" rel="noopener">Av. Ourense, Orense</a>
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 BarberKing. Todos los derechos reservados.</span>
+      <span data-i18n="footer.derechos">© 2026 BarberKing. Todos los derechos reservados.</span>
       <span class="footer__legal-links">
-        <a href="/politica-de-privacidad">Privacidad</a>
-        <a href="/aviso-legal">Aviso legal</a>
-        <a href="/politica-de-cookies">Cookies</a>
+        <a href="/politica-de-privacidad" data-i18n="footer.privacidad">Privacidad</a>
+        <a href="/aviso-legal" data-i18n="footer.aviso_legal">Aviso legal</a>
+        <a href="/politica-de-cookies" data-i18n="footer.cookies">Cookies</a>
       </span>
     </div>
   </footer>
 
+  <script src="{{ url_for('static', filename='i18n/i18n.js') }}?v=1"></script>
   <script src="{{ url_for('static', filename='auth.js') }}?v=2"></script>
   <script src="{{ url_for('static', filename='main.js') }}?v=2"></script>
 
   <!-- Banner de cookies -->
   <div id="cookieBanner" class="cookie-banner" role="alertdialog" aria-labelledby="cookieMsg" hidden>
-    <p id="cookieMsg">Usamos cookies técnicas de sesión para el funcionamiento de la plataforma.
-      <a href="/politica-de-cookies">Más información</a>.
+    <p id="cookieMsg"><span data-i18n="cookie.msg">Usamos cookies técnicas de sesión para el funcionamiento de la plataforma.</span>
+      <a href="/politica-de-cookies" data-i18n="cookie.mas_info">Más información</a>.
     </p>
-    <button id="btnAceptarCookies" class="btn btn--dark">Aceptar</button>
+    <button id="btnAceptarCookies" class="btn btn--dark" data-i18n="cookie.aceptar">Aceptar</button>
   </div>
   <script>
     (function() {

@@ -30,6 +30,9 @@ import mysql.connector
 from mysql.connector import Error
 from datetime import datetime, date, timedelta
 
+#------------------------------------------------
+# from flask_babel import Babel, gettext as _
+
 from config import (
     DB_CONFIG, SECRET_KEY,
     SESSION_COOKIE_HTTPONLY, SESSION_COOKIE_SAMESITE, SESSION_COOKIE_SECURE,
@@ -113,7 +116,7 @@ def crear_app():
     app.config["PERMANENT_SESSION_LIFETIME"]    = timedelta(seconds=PERMANENT_SESSION_LIFETIME)
     app.config["SESSION_COOKIE_NAME"]           = "bk_session"
     app.config["SEND_FILE_MAX_AGE_DEFAULT"]     = 0  # Sin cache en desarrollo
-
+    
     # ── 2. CORS ───────────────────────────────────────────────
     CORS(app, supports_credentials=True, origins=CORS_ORIGINS)
 
@@ -569,6 +572,7 @@ def crear_app():
 
         return jsonify({"ocupados": ocupados}), 200
 
+
     # ═════════════════════════════════════════════════════════
     # FUNCIÓN AUXILIAR: Verificar solapamiento de citas
     # ═════════════════════════════════════════════════════════
@@ -611,7 +615,6 @@ def crear_app():
         return None  
 
     return app
-
 
 # ═════════════════════════════════════════════════════════════
 # EJECUTAR
