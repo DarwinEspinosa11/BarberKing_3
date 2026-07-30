@@ -296,6 +296,10 @@ def crear_app():
         if fecha_hora.date() < date.today():
             return jsonify({"error": "La fecha debe ser hoy o en el futuro."}), 400
 
+        # Validar que si es hoy, la hora no haya pasado ya
+        if fecha_hora.date() == date.today() and fecha_hora <= datetime.now():
+            return jsonify({"error": "No puedes agendar una cita en una hora que ya pasó."}), 400
+
         # Validar horario de atención
         hora = fecha_hora.time()
         if hora.hour < HORA_APERTURA:
@@ -420,6 +424,10 @@ def crear_app():
 
         if fecha_hora.date() < date.today():
             return jsonify({"error": "La fecha debe ser hoy o en el futuro."}), 400
+
+        # Validar que si es hoy, la hora no haya pasado ya
+        if fecha_hora.date() == date.today() and fecha_hora <= datetime.now():
+            return jsonify({"error": "No puedes agendar una cita en una hora que ya pasó."}), 400
 
         hora = fecha_hora.time()
         if hora.hour < HORA_APERTURA:
