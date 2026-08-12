@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BarberKing | Inicio</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='themify-icons-font/themify-icons/themify-icons.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -166,10 +166,20 @@
           </div>
           <div class="form-group">
             <label for="hora" data-i18n="form.hora">Hora <span class="required-mark">*</span></label>
-            <input type="time" id="hora" min="09:00" max="18:30" step="1800"
-              aria-required="true" aria-describedby="error-hora hora-hint" />
+            
+            <!-- Grid visual de horarios -->
+            <div class="horarios-grid" id="horariosGrid">
+              <div class="horarios-grid__placeholder">
+                <p>Selecciona servicio, barbero y fecha para ver horarios disponibles</p>
+              </div>
+            </div>
+            
+            <!-- Input oculto para almacenar la hora seleccionada -->
+            <input type="hidden" id="hora" name="hora" />
+            
             <span class="form-hint" id="hora-hint" data-i18n="form.hora_hint">9:00 a 19:00 hrs</span>
             <span class="form-error" id="error-hora" role="alert" aria-live="polite"></span>
+            <span class="form-hint form-hint--aviso" id="hora-aviso" role="status" aria-live="polite"></span>
           </div>
         </div>
 
@@ -353,7 +363,7 @@
 
   <script src="{{ url_for('static', filename='i18n/i18n.js') }}?v=1"></script>
   <script src="{{ url_for('static', filename='auth.js') }}?v=2"></script>
-  <script src="{{ url_for('static', filename='main.js') }}?v=2"></script>
+  <script src="{{ url_for('static', filename='main.js') }}?v=6"></script>
 
   <!-- Banner de cookies -->
   <div id="cookieBanner" class="cookie-banner" role="alertdialog" aria-labelledby="cookieMsg" hidden>

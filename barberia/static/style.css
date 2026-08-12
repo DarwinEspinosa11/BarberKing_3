@@ -47,6 +47,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  padding: 0.25rem;
+  background: #000; /* Fondo negro para uniformizar */
+  border-radius: 0.25rem;
 }
 
 .header__logo img {
@@ -54,6 +57,7 @@ body {
   width: auto;
   height: 3.8rem;
   object-fit: contain;
+  object-position: center;
   border-radius: 0.25rem;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.08));
 }
@@ -477,7 +481,92 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 select option { background: var(--white); color: var(--black); }
 
 .form-hint { font-size: 0.75rem; color: #666; letter-spacing: 0.5px; }
+.form-hint--aviso { font-weight: 600; color: #d9534f; }
 .form-required-note { font-size: 0.75rem; color: #666; margin-bottom: 1.2rem; letter-spacing: 0.5px; }
+
+/* === GRID DE HORARIOS VISUALES === */
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.5rem;
+  padding: 1rem 0;
+  max-width: 100%;
+}
+
+.horarios-grid__placeholder {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.85rem;
+  background: #f8f8f8;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+}
+
+.horario-slot {
+  padding: 0.75rem 0.5rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  background: var(--white);
+  color: var(--black);
+}
+
+.horario-slot:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(201, 168, 76, 0.2);
+}
+
+.horario-slot--disponible {
+  border-color: #28a745;
+  background: #f8fff9;
+  color: #155724;
+}
+
+.horario-slot--disponible:hover {
+  background: #28a745;
+  color: white;
+  border-color: #1e7e34;
+}
+
+.horario-slot--ocupado {
+  border-color: #dc3545;
+  background: #fff5f5;
+  color: #721c24;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.horario-slot--ocupado:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.horario-slot--seleccionado {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .horarios-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.4rem;
+  }
+  
+  .horario-slot {
+    padding: 0.6rem 0.3rem;
+    font-size: 0.8rem;
+  }
+}
 .required-mark { color: var(--error); margin-left: 2px; }
 
 .form-error {
@@ -1164,7 +1253,10 @@ body.modal-abierto { overflow: hidden; }
   color: #c9a84c;
 }
 
-.faq-item[open] .faq-item__pregunta span { transform: rotate(45deg); display: inline-block; }
+.faq-item[open] .faq-item__pregunta span[aria-hidden="true"] { 
+  transform: rotate(45deg); 
+  display: inline-block; 
+}
 
 .faq-item__respuesta {
   padding: 0 1.8rem 1.4rem;

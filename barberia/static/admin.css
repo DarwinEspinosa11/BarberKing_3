@@ -35,6 +35,9 @@
   gap: 0.5rem;
   text-decoration: none;
   flex-direction: column;
+  padding: 0.25rem;
+  background: #000; /* Fondo negro para uniformizar */
+  border-radius: 0.25rem;
 }
 
 .header__logoadmin img {
@@ -42,6 +45,7 @@
   width: auto;
   height: 5.8rem;
   object-fit: contain;
+  object-position: center;
   border-radius: 0.25rem;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.08));
 }
