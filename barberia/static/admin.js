@@ -300,6 +300,8 @@ async function cargarBarberos() {
           <button class="btn-accion" onclick='abrirEditarBarbero(${JSON.stringify(b)})'>Editar</button>
           <button class="btn-accion btn-accion--danger"
             onclick="toggleBarbero(${b.id_barbero},${b.activo},this)">${b.activo?"Desactivar":"Activar"}</button>
+          <button class="btn-accion btn-accion--danger" style="background:#dc2626"
+            onclick="eliminarBarbero(${b.id_barbero},this)">Eliminar</button>
         </td>
       </tr>`;
     }).join("");
@@ -312,6 +314,12 @@ async function cargarBarberos() {
 function renderServiciosCheckboxList() {
   const c = document.getElementById("barberoServiciosCheckboxContainer");
   if (!c) return;
+  
+  if (!todosLosServicios || todosLosServicios.length === 0) {
+    c.innerHTML = '<p style="color:#666;font-size:0.9rem">No hay especialidades disponibles</p>';
+    return;
+  }
+  
   c.innerHTML = todosLosServicios.map(s => `
     <label class="admin-checkbox-label">
       <input type="checkbox" name="espServicios" value="${s.id_servicio}" />
@@ -319,8 +327,23 @@ function renderServiciosCheckboxList() {
     </label>`).join("");
 }
 
-function abrirFormBarbero(limpiar = true) {
+async function abrirFormBarbero(limpiar = true) {
   const p = document.getElementById("formBarberoPanel");
+  
+  // ASEGURAR que los servicios estén cargados antes de renderizar checkboxes
+  if (!todosLosServicios || todosLosServicios.length === 0) {
+    try {
+      const res = await apiFetch("/admin/api/servicios");
+      todosLosServicios = await res.json();
+    } catch (error) {
+      console.error("Error cargando servicios:", error);
+      toast("Error al cargar especialidades", "error");
+      return;
+    }
+  }
+  
+  renderServiciosCheckboxList();
+  
   p.style.display = "block";
   p.scrollIntoView({behavior:"smooth",block:"start"});
   if (limpiar) {
@@ -331,8 +354,8 @@ function abrirFormBarbero(limpiar = true) {
   }
 }
 
-function abrirEditarBarbero(b) {
-  abrirFormBarbero(false);
+async function abrirEditarBarbero(b) {
+  await abrirFormBarbero(false);
   document.getElementById("formBarberoTitulo").textContent = "Editar Barbero";
   document.getElementById("barberoId").value       = b.id_barbero;
   document.getElementById("barberoNombre").value   = b.nombre;
@@ -356,6 +379,7 @@ document.getElementById("formBarbero")?.addEventListener("submit", async e => {
     foto_url: document.getElementById("barberoFoto").value.trim(),
     servicios,
   };
+  
   const url = id ? `/admin/api/barberos/${id}` : "/admin/api/barberos";
   try {
     const res = await apiFetch(url, {method:id?"PUT":"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(datos)});
@@ -372,6 +396,28 @@ async function toggleBarbero(id, activo, btn) {
     if (res.ok) { toast(`Barbero #${id} ${activo?"desactivado":"activado"}`); cargarBarberos(); }
     else toast("Error al cambiar estado","error");
   } catch { toast("Error de conexión","error"); }
+}
+
+async function eliminarBarbero(id, btn) {
+  if (!await confirmar(`¿Eliminar permanentemente al barbero #${id}? Esta acción no se puede deshacer. ADVERTENCIA: Si tiene citas asociadas, la eliminación fallará.`)) return;
+  btn.textContent = "Eliminando...";
+  btn.disabled = true;
+  try {
+    const res = await apiFetch(`/admin/api/barberos/${id}`, {method: "DELETE"});
+    const d = await res.json();
+    if (res.ok) {
+      btn.closest("tr").remove();
+      toast(`Barbero #${id} eliminado exitosamente`);
+    } else {
+      toast(d.error || "Error al eliminar barbero", "error");
+      btn.textContent = "Eliminar";
+      btn.disabled = false;
+    }
+  } catch {
+    toast("Error de conexión", "error");
+    btn.textContent = "Eliminar";
+    btn.disabled = false;
+  }
 }
 
 // ── SERVICIOS ─────────────────────────────────────────────────

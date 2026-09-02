@@ -198,6 +198,10 @@
 
 .admin-tabla { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 
+/* Dar más espacio a la columna de acciones en barberos */
+.admin-tabla thead th:last-child { min-width: 240px; }
+.admin-tabla tbody td:last-child { min-width: 240px; }
+
 .admin-tabla thead { background: #111; border-bottom: 1px solid #222; }
 
 .admin-tabla th {
@@ -380,6 +384,8 @@
   max-height: 120px;
   overflow-y: auto;
   margin-top: 0.4rem;
+  position: relative;
+  z-index: 5;
 }
 
 .admin-checkbox-label {
@@ -392,9 +398,19 @@
   font-weight: normal;
   text-transform: none;
   letter-spacing: 0;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
-.admin-checkbox-label input[type="checkbox"] { accent-color: #c9a84c; width: 14px; height: 14px; }
+.admin-checkbox-label input[type="checkbox"] { 
+  accent-color: #c9a84c; 
+  width: 14px; 
+  height: 14px;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 11;
+}
 
 /* ── Toast ── */
 .admin-toast {

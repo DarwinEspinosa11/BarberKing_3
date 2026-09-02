@@ -762,6 +762,51 @@ def admin_toggle_barbero(barbero_id):
     return jsonify({"mensaje": "Estado del barbero actualizado."}), 200
 
 
+@admin_bp.route("/api/barberos/<int:barbero_id>", methods=["DELETE"])
+@admin_requerido
+def admin_eliminar_barbero(barbero_id):
+    """
+    Elimina permanentemente un barbero.
+    ADVERTENCIA: Fallará si el barbero tiene citas asociadas.
+    """
+    conn = get_db()
+    if not conn:
+        return jsonify({"error": "Error de conexión."}), 500
+    
+    try:
+        cursor = conn.cursor()
+        
+        # Verificar si el barbero tiene citas
+        cursor.execute("SELECT COUNT(*) as total FROM citas WHERE id_barbero = %s", (barbero_id,))
+        resultado = cursor.fetchone()
+        
+        if resultado and resultado[0] > 0:
+            return jsonify({
+                "error": f"No se puede eliminar el barbero. Tiene {resultado[0]} cita(s) asociada(s). Desactívalo en su lugar."
+            }), 400
+        
+        # Eliminar primero las especialidades del barbero
+        cursor.execute("DELETE FROM barbero_servicio WHERE id_barbero = %s", (barbero_id,))
+        
+        # Eliminar el barbero
+        cursor.execute("DELETE FROM barberos WHERE id_barbero = %s", (barbero_id,))
+        
+        if cursor.rowcount == 0:
+            return jsonify({"error": "Barbero no encontrado."}), 404
+            
+        conn.commit()
+        log_evento("ADMIN_BARBERO_ELIMINADO", f"barbero_id={barbero_id}")
+        
+    except Error as e:
+        conn.rollback()
+        return jsonify({"error": "Error al eliminar el barbero."}), 500
+    finally:
+        cursor.close()
+        conn.close()
+
+    return jsonify({"mensaje": "Barbero eliminado exitosamente."}), 200
+
+
 # ═════════════════════════════════════════════════════════════
 # SERVICIOS: Listar, Crear, Editar, Eliminar
 # ═════════════════════════════════════════════════════════════
