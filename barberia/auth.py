@@ -75,7 +75,7 @@ def registro():
     nombre   = (data.get("nombre")   or "").strip()
     apellido = (data.get("apellido") or "").strip()
     telefono = (data.get("telefono") or "").strip()
-    email    = (data.get("email")    or "").strip().lower()
+    email    = (data.get("email")    or "").strip().lower()  # FORZAR LOWERCASE
     password = (data.get("password") or "").strip()
 
     # Validaciones
@@ -93,11 +93,12 @@ def registro():
     conn = get_db()
     if not conn:
         return jsonify({"error": "Error de conexión."}), 500
+    
     try:
         cursor = conn.cursor(dictionary=True)
 
-        # Verificar que el email no exista
-        cursor.execute("SELECT id_cliente FROM clientes WHERE email = %s", (email,))
+        # DOBLE VERIFICACIÓN: Verificar que el email no exista (case insensitive)
+        cursor.execute("SELECT id_cliente FROM clientes WHERE LOWER(email) = %s", (email,))
         if cursor.fetchone():
             return jsonify({"error": "Ese email ya está registrado."}), 409
 
@@ -111,7 +112,14 @@ def registro():
         conn.commit()
         log_evento("REGISTRO", f"cliente_id={cliente_id}", usuario=email)
 
-    except Error:
+    except mysql.connector.IntegrityError as e:
+        conn.rollback()
+        if "Duplicate entry" in str(e) and "email" in str(e):
+            return jsonify({"error": "Ese email ya está registrado."}), 409
+        return jsonify({"error": "Error de integridad de datos."}), 500
+    except Error as e:
+        conn.rollback()
+        log_evento("REGISTRO_ERROR", f"error={str(e)}", usuario=email)
         return jsonify({"error": "Error al procesar el registro."}), 500
     finally:
         cursor.close()

@@ -60,8 +60,8 @@ function obtenerIcono(nombreServicio) {
  */
 function generarOpcionesHoras(duracionMinutos) {
   const opciones = [];
-  const cierreMinutos = HORA_CIERRE * 60;          // 19:00 = 1140 min
-  const inicioMinutos = HORA_APERTURA * 60;        // 09:00 = 540 min
+  const cierreMinutos = HORA_CIERRE * 60;          
+  const inicioMinutos = HORA_APERTURA * 60;        
   const ultimoTurnoMinutos = cierreMinutos - duracionMinutos;
 
   // Generar intervalos cada 30 minutos
@@ -76,7 +76,7 @@ function generarOpcionesHoras(duracionMinutos) {
 }
 
 /**
- * Crea la grid visual de horarios (disponible/ocupado/seleccionado)
+ * grid visual (disponible/ocupado/seleccionado)
  * 
  * COLORES:
  * - Verde: Disponible para reservar
